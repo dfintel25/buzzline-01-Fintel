@@ -12,6 +12,7 @@ Generate some streaming buzz messages.
 import os
 import random
 import time
+from datetime import datetime
 
 # Import external packages (must be installed in .venv first)
 from dotenv import load_dotenv
@@ -85,7 +86,7 @@ def generate_messages():
         topic = random.choice(TOPICS)
         
         yield {
-            "timestamp": time.time(),
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "user_id": random.randint(1000, 9999),
             "message": f"I just {action} {topic}! It was {adjective}."
         }

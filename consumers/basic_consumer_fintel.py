@@ -19,42 +19,25 @@ from utils.utils_logger import logger, get_log_file_path
 # Define a function to process a single message
 # #####################################
 
-
 def process_message(log_file) -> None:
-    """
-    Read a log file and process each message.
-
-    Args:
-        log_file (str): The path to the log file to read.
-    """
     with open(log_file, "r") as file:
-        # Move to the end of the file
         file.seek(0, os.SEEK_END)
         print("Consumer is ready and waiting for a new log message...")
 
-        # Use while True loop so the consumer keeps running forever
         while True:
-
-            # Read the next line of the file
             line = file.readline()
-
-            # If the line is empty, wait for a new log entry
             if not line:
-                # Wait a second for a new log entry
-                delay_seconds = 1
-                time.sleep(delay_seconds)
-                # Keep checking for new log entries
+                time.sleep(1)
                 continue
 
-            # We got a new log entry!
-            # Remove any leading/trailing white space and log the message
             message = line.strip()
             print(f"Consumed log message: {message}")
 
-            # monitor and alert on special conditions
             if "I just loved a movie! It was funny." in message:
                 print(f"ALERT: The special message was found! \n{message}")
                 logger.warning(f"ALERT: The special message was found! \n{message}")
+                # Stop consumer immediately
+                sys.exit(0)
 
 
 #####################################
