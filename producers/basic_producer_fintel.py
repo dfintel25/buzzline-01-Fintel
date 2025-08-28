@@ -1,5 +1,5 @@
 """
-basic_generator_case.py
+basic_generator_fintel.py
 
 Generate some streaming buzz messages. 
 """
@@ -59,9 +59,9 @@ def get_message_interval() -> int:
 #####################################
 
 # Define some lists for generating buzz messages
-ADJECTIVES: list = ["amazing", "funny", "boring", "exciting", "weird"]
-ACTIONS: list = ["found", "saw", "tried", "shared", "loved"]
-TOPICS: list = ["a movie", "a meme", "an app", "a trick", "a story"]
+ADJECTIVES: list = ["amazing", "funny", "boring", "exciting", "weird", "fascinating", "soothing", "savory"]
+ACTIONS: list = ["found", "saw", "tried", "shared", "loved", "tasted", "rejected", "cried"]
+TOPICS: list = ["a movie", "a meme", "an app", "a trick", "a story", "a bicycle", "a Rube Goldberg machine", "a recipe"]
 
 #####################################
 # Define a function to generate buzz messages
@@ -83,9 +83,12 @@ def generate_messages():
         adjective = random.choice(ADJECTIVES)
         action = random.choice(ACTIONS)
         topic = random.choice(TOPICS)
-        yield f"I just {action} {topic}! It was {adjective}."
-
-
+        
+        yield {
+            "timestamp": time.time(),
+            "user_id": random.randint(1000, 9999),
+            "message": f"I just {action} {topic}! It was {adjective}."
+        }
 #####################################
 # Define main() function to run this producer.
 #####################################
