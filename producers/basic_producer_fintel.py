@@ -107,7 +107,7 @@ def main() -> None:
     that explains what the function does.
     """
 
-    logger.info("START producer...")
+    logger.info("STARTING PRODUCER...")
     logger.info("Hit CTRL c (or CMD c) to close.")
     
     # Call the function we defined above to get the message interval
@@ -121,7 +121,7 @@ def main() -> None:
         time.sleep(interval_secs)
 
     logger.info("NOTE: See the `logs` folder to learn more.")
-    logger.info("END producer.....")
+    logger.info("ENDING PRODUCER....")
 
 
 #####################################
